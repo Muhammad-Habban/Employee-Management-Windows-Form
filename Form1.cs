@@ -39,7 +39,7 @@ namespace EmployeeManagementApplication
 
         private void button4_Click(object sender, EventArgs e)
         {
-            CreateEmployee createEmployee = new CreateEmployee();
+            CreateEmployee createEmployee = new CreateEmployee(employeeBLL);
             createEmployee.ShowDialog();
         }
 
@@ -66,13 +66,18 @@ namespace EmployeeManagementApplication
         }
         private void button9_Click(object sender, EventArgs e)
         {
-            CreateDepartment createDepartment = new CreateDepartment();
+            CreateDepartment createDepartment = new CreateDepartment(employeeBLL);
             createDepartment.ShowDialog();
         }
         private void button10_Click(object sender, EventArgs e)
         {
             ViewDepartmentWithDetails viewDepartmentWithDetails = new ViewDepartmentWithDetails(employeeBLL);
             viewDepartmentWithDetails.Show();
+        }
+        private void button11_Click(object sender, EventArgs e)
+        {
+            SearchEmployee searchEmployee = new SearchEmployee(employeeBLL);
+            searchEmployee.Show();
         }
 
         private void Form1_Load(object sender, EventArgs e)

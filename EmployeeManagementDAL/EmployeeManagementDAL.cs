@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace EmployeeManagementDAL
 {
-    public class EmployeeManagementDAL
+    public class EmployeeManagementDAL : IEmployeeManagementDAL
     {
         private string connectionString;
         public EmployeeManagementDAL()

@@ -13,10 +13,10 @@ namespace EmployeeManagementApplication
 {
     public partial class CreateEmployee : Form
     {
-        private EmployeeManagementBLL.EmployeeManagementBLL employeeBLL;
-        public CreateEmployee()
+        private EmployeeManagementBLL.IEmployeeManagementBLL employeeBLL;
+        public CreateEmployee(EmployeeManagementBLL.IEmployeeManagementBLL employeeBLL)
         {
-            employeeBLL = new EmployeeManagementBLL.EmployeeManagementBLL();
+            this.employeeBLL = employeeBLL;
             InitializeComponent();
         }
 

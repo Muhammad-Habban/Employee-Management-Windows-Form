@@ -193,6 +193,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchEmployee.Designer.cs">
+      <DependentUpon>SearchEmployee.cs</DependentUpon>
+    </Compile>
     <Compile Include="UpdateDepartment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -253,6 +259,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SearchEmployee.resx">
+      <DependentUpon>SearchEmployee.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UpdateDepartment.resx">
       <DependentUpon>UpdateDepartment.cs</DependentUpon>
     </EmbeddedResource>
@@ -289,6 +298,10 @@
     <ProjectReference Include="EmployeeManagementBLL\EmployeeManagementBLL.csproj">
       <Project>{da1690b3-ef26-43d4-bd88-02766ca8cae3}</Project>
       <Name>EmployeeManagementBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="EmployeeManagementDAL\EmployeeManagementDAL.csproj">
+      <Project>{f4bf385f-df76-4929-8945-1e0946547286}</Project>
+      <Name>EmployeeManagementDAL</Name>
     </ProjectReference>
     <ProjectReference Include="EmployeeManagementDTO\EmployeeManagementDTO.csproj">
       <Project>{01a36277-59fd-40f8-9e90-1c0d5e0a4f67}</Project>

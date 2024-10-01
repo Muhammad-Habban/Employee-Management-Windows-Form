@@ -10,10 +10,10 @@ namespace EmployeeManagementBLL
 {
     public class EmployeeManagementBLL : IEmployeeManagementBLL
     {
-        private readonly EmployeeManagementDAL.EmployeeManagementDAL employeeDAL;
-        public EmployeeManagementBLL()
+        private readonly EmployeeManagementDAL.IEmployeeManagementDAL employeeDAL;
+        public EmployeeManagementBLL(EmployeeManagementDAL.IEmployeeManagementDAL employeeDAL)
         {
-            employeeDAL = new EmployeeManagementDAL.EmployeeManagementDAL();
+            this.employeeDAL = employeeDAL;
         }
         public List<Employee> GetEmployees()
         {
@@ -47,6 +47,13 @@ namespace EmployeeManagementBLL
         }
         public bool CreateEmployee(Employee e)
         {
+            if (string.IsNullOrEmpty(e.FirstName) ||
+                string.IsNullOrEmpty(e.LastName) ||
+                string.IsNullOrEmpty(e.Position) ||
+                string.IsNullOrEmpty(e.DepartmentName))
+            {
+                return false;
+            }
             Department department = employeeDAL.GetDepartmentByName(e.DepartmentName);
             if (e.Salary < 0 || department == null)
             {
@@ -64,6 +71,13 @@ namespace EmployeeManagementBLL
         }
         public bool UpdateEmployee(Employee e)
         {
+            if (string.IsNullOrEmpty(e.FirstName) ||
+                string.IsNullOrEmpty(e.LastName) ||
+                string.IsNullOrEmpty(e.Position) ||
+                string.IsNullOrEmpty(e.DepartmentName))
+            {
+                return false;
+            }
             if (e.Salary < 0)
             {
                 return false;
@@ -81,7 +95,10 @@ namespace EmployeeManagementBLL
             int budget = department.Budget;
             int deptSalary = employeeDAL.GetDepartmentSalaryExpenditures(department.DepartmentId);
             deptSalary += e.Salary;
-            deptSalary -= employee.Salary;
+            if(employee.DepartmentName == e.DepartmentName)
+            {
+                deptSalary -= employee.Salary;
+            }
             if (deptSalary > budget)
             {
                 return false;
@@ -100,6 +117,10 @@ namespace EmployeeManagementBLL
         }
         public bool CreateDepartment(Department d)
         {
+            if (string.IsNullOrEmpty(d.DepartmentName))
+            {
+                return false;
+            }
             if (d.Budget < 0 || employeeDAL.GetDepartmentByName(d.DepartmentName) != null)
             {
                 return false;
@@ -109,6 +130,10 @@ namespace EmployeeManagementBLL
         }
         public bool UpdateDepartment(Department d)
         {
+            if (string.IsNullOrEmpty(d.DepartmentName))
+            {
+                return false;
+            }
             if (employeeDAL.GetDepartmentById(d.DepartmentId) == null)
             {
                 return false;

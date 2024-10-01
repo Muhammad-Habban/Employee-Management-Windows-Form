@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Extensions.DependencyInjection;
 using EmployeeManagementBLL;
+using EmployeeManagementDAL;
 
 namespace EmployeeManagementApplication
 {
@@ -22,6 +23,8 @@ namespace EmployeeManagementApplication
             
             var services = new ServiceCollection();
             services.AddSingleton<EmployeeManagementBLL.IEmployeeManagementBLL, EmployeeManagementBLL.EmployeeManagementBLL>();
+            services.AddSingleton<EmployeeManagementDAL.IEmployeeManagementDAL, EmployeeManagementDAL.EmployeeManagementDAL>();
+
             serviceProvider = services.BuildServiceProvider();
             Application.Run(new Form1());
         }
